@@ -3,7 +3,6 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 
 const FormInputs = ({ register, name, type, placeholder, errors }) => {
-  console.log(errors[name]?.message);
 
   return (
     <div className="mb-2">

@@ -3,20 +3,22 @@ import TextAreaInput from "@/components/Form/TextAreaInput";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { campingSchema } from "@/utils/Schema";
-
-
-
+import Buttons from "@/components/Form/Buttons";
+import CategoryInput from "@/components/Form/CategoryInput";
+import Mainmap from "@/components/Form/map/Mainmap";
 
 const Camping = () => {
-  const { register, handleSubmit, formState } = useForm({
+  const { register, handleSubmit, formState, setValue } = useForm({
     resolver: zodResolver(campingSchema),
   });
-  const { errors } = formState;
+  const { errors, isSubmitting } = formState;
 
-  console.log(errors);
-  
+  console.log(isSubmitting);
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    console.log(data);
+  };
 
   return (
     <section>
@@ -45,8 +47,19 @@ const Camping = () => {
               register={register}
               errors={errors}
             />
+            <CategoryInput
+              name="category"
+              register={register}
+              setValue={setValue}
+            />
+            <Mainmap register={register} setValue={setValue} />
           </div>
-          <button>submit</button>
+
+          <Buttons
+            text="Create camping"
+            isPending={isSubmitting}
+            type="submit"
+          />
         </form>
       </div>
     </section>
