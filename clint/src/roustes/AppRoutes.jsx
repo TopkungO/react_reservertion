@@ -10,6 +10,7 @@ import Notfound from "@/pages/Notfound";
 import Layout from "@/layouts/Layout";
 import LayoutAdmin from "@/layouts/LayoutAdmin";
 import Camping from "@/pages/admin/Camping";
+import Profile from "@/pages/user/Profile";
 
 const AppRoutes = () => {
   return (
@@ -19,6 +20,11 @@ const AppRoutes = () => {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="about" element={<About />} />
+        </Route>
+
+        {/*Private User*/}
+        <Route path="user" element={<Layout />}>
+          <Route path="profile" element={<Profile />} />
         </Route>
 
         {/* private */}
