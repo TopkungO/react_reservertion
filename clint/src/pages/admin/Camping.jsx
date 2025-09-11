@@ -5,19 +5,31 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { campingSchema } from "@/utils/Schema";
 import Buttons from "@/components/Form/Buttons";
 import CategoryInput from "@/components/Form/CategoryInput";
-import Mainmap from "@/components/Form/map/Mainmap";
+
+import { createCampimg } from "@/api/camping";
+import { useAuth } from "@clerk/clerk-react";
+import Mainmap from "@/components/map/Mainmap";
+import FormUploadImage from "@/components/Form/FormUploadImage";
 
 const Camping = () => {
+  const { getToken } = useAuth();
   const { register, handleSubmit, formState, setValue } = useForm({
     resolver: zodResolver(campingSchema),
   });
   const { errors, isSubmitting } = formState;
 
-  console.log(isSubmitting);
+  // console.log(isSubmitting);
 
   const onSubmit = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-    console.log(data);
+    const token = await getToken();
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    createCampimg(token, data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -47,11 +59,14 @@ const Camping = () => {
               register={register}
               errors={errors}
             />
-            <CategoryInput
-              name="category"
-              register={register}
-              setValue={setValue}
-            />
+            <div>
+              <CategoryInput
+                name="category"
+                register={register}
+                setValue={setValue}
+              />
+              <FormUploadImage/>
+            </div>
             <Mainmap register={register} setValue={setValue} />
           </div>
 

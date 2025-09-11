@@ -17,11 +17,11 @@ router.get("/camping/:id", listCamping);
 
 //Methon GET [read camping]
 //Access public
-router.get("/camping", authCheck, readCamping);
+router.get("/camping", readCamping);
 
 //Methon POST [create camping]
 //Access public
-router.post("/camping", createCamping);
+router.post("/camping",authCheck, createCamping);
 
 //@Methon put [edit camping]
 //@Access Private
