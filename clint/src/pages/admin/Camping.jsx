@@ -10,10 +10,11 @@ import { createCampimg } from "@/api/camping";
 import { useAuth } from "@clerk/clerk-react";
 import Mainmap from "@/components/map/Mainmap";
 import FormUploadImage from "@/components/Form/FormUploadImage";
+import { createAlert } from "@/utils/createAlert";
 
 const Camping = () => {
   const { getToken } = useAuth();
-  const { register, handleSubmit, formState, setValue } = useForm({
+  const { register, handleSubmit, formState, setValue ,reset} = useForm({
     resolver: zodResolver(campingSchema),
   });
   const { errors, isSubmitting } = formState;
@@ -22,13 +23,19 @@ const Camping = () => {
 
   const onSubmit = async (data) => {
     const token = await getToken();
+    console.log(data);
+    
     await new Promise((resolve) => setTimeout(resolve, 1000));
     createCampimg(token, data)
       .then((res) => {
         console.log(res);
+        reset()
+        createAlert("success","Create Landmark Success")
       })
       .catch((err) => {
         console.log(err);
+        createAlert("error",err.message);
+
       });
   };
 
@@ -65,7 +72,7 @@ const Camping = () => {
                 register={register}
                 setValue={setValue}
               />
-              <FormUploadImage/>
+              <FormUploadImage setValue={setValue} />
             </div>
             <Mainmap register={register} setValue={setValue} />
           </div>

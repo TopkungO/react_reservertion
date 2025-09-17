@@ -1,9 +1,8 @@
-import MapHome from "@/components/map/MapHome";
-
+import CampimgContainer from "../components/Home/CampimgContainer";
 const Home = () => {
   return (
     <div>
-      <MapHome />
+      <CampimgContainer />
     </div>
   );
 };
