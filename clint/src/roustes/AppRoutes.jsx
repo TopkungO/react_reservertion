@@ -11,6 +11,7 @@ import Layout from "@/layouts/Layout";
 import LayoutAdmin from "@/layouts/LayoutAdmin";
 import Camping from "@/pages/admin/Camping";
 import Profile from "@/pages/user/Profile";
+import ProtectRoute from "./ProtectRoute";
 
 const AppRoutes = () => {
   return (
@@ -28,7 +29,9 @@ const AppRoutes = () => {
         </Route>
 
         {/* private */}
-        <Route path="admin" element={<LayoutAdmin />}>
+        <Route
+          path="admin"
+          element={<ProtectRoute element={<LayoutAdmin />} />}>
           <Route index element={<Dashboard />} />
           <Route path="manage" element={<Manage />} />
           <Route path="camping" element={<Camping />} />

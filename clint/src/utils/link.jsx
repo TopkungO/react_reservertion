@@ -1,7 +1,9 @@
+export const publicLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+];
 
-export const links = [
-    {href:'/user/profile',label:'MyProfile'},
-    {href:'/',label:'Home'},
-    {href:'/about',label:'About'},
-    {href:'/admin/camping',label:'Camping'},
+export const priverLinks = [
+  { href: "/user/profile", label: "MyProfile" },
+  { href: "/admin/camping", label: "Camping" },
 ];
