@@ -12,6 +12,7 @@ import LayoutAdmin from "@/layouts/LayoutAdmin";
 import Camping from "@/pages/admin/Camping";
 import Profile from "@/pages/user/Profile";
 import ProtectRoute from "./ProtectRoute";
+import CampingDetail from "@/pages/user/CampingDetail";
 
 const AppRoutes = () => {
   return (
@@ -26,6 +27,7 @@ const AppRoutes = () => {
         {/*Private User*/}
         <Route path="user" element={<Layout />}>
           <Route path="profile" element={<Profile />} />
+          <Route path="camping/:id" element={<CampingDetail/>}/>
         </Route>
 
         {/* private */}

@@ -11,3 +11,7 @@ export const createCampimg = async (token, data) => {
 export const listCamping = async () => {
   return await axios.get("http://localhost:5000/api/camping");
 };
+
+export const readCamping = async (id) => {
+  return await axios.get(`http://localhost:5000/api/camping/${id}`);
+};
