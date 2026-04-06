@@ -9,7 +9,7 @@ if (!PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key");
 }
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  <>
     <ClerkProvider
       publishableKey={PUBLISHABLE_KEY}
       signInFallbackRedirectUrl="/"
@@ -17,5 +17,5 @@ createRoot(document.getElementById("root")).render(
       afterSignOutUrl="/">
       <App />
     </ClerkProvider>
-  </StrictMode>
+  </>
 );

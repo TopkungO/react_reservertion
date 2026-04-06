@@ -42,9 +42,11 @@ const Mainmap = ({ register, location, setValue }) => {
       )}
 
       <h1 className="font-semibold mt-4">Where aare You?</h1>
-      {
-        position && <p className="text-sm text-gray-600">Coordinates :{ position.lat.toFixed(6)},{position.lng.toFixed(6)}</p>
-      }
+      {position && (
+        <p className="text-sm text-gray-600">
+          Coordinates :{position.lat.toFixed(6)},{position.lng.toFixed(6)}
+        </p>
+      )}
       <MapContainer
         className="h-[50vh] rounded-md z-0"
         center={location || DEFAULT_LOCATION}
@@ -54,6 +56,8 @@ const Mainmap = ({ register, location, setValue }) => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+
+        {location && <Marker position={location}></Marker>}
 
         <LocationMarker
           position={position}
